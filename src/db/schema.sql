@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS product (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(256) UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS category (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(256) UNIQUE
+);
+
+CREATE TABLE IF NOT EXISTS category_product (
+  category_id INTEGER REFERENCES category(id) ON DELETE CASCADE,
+  product_id INTEGER REFERENCES product(id) ON DELETE CASCADE,
+  PRIMARY KEY (category_id, product_id)
+);
