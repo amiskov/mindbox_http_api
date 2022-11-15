@@ -39,8 +39,9 @@ Open API будет доступен по адресу http://localhost:8000/api
 docker exec $YOUR_CONTAINER_ID pytest /code/app/test_main.py
 ```
 
-Для запуска из директории проекта понадобится установленный PyTest. Запустить можно так:
+Для запуска из директории проекта понадобятся зависимости:
 
 ```sh
+pip install -r requirements.txt
 make test # запустит `pytest . -sv`
 ```
