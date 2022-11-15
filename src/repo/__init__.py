@@ -1,9 +1,7 @@
 from typing import Optional
-
 from fastapi import Depends
 from pydantic import BaseModel
-
-from db.postgres import Database
+from .postgres import Database
 
 
 class ProductWithCategories(BaseModel):
@@ -15,9 +13,11 @@ class CategoryWithProducts(BaseModel):
     name: str
     products: list[str]
 
-class ProdCatPair(BaseModel):
+
+class ProductCategoryPair(BaseModel):
     product: Optional[str]
     category: Optional[str]
+
 
 db: Optional[Database] = None
 
@@ -49,9 +49,9 @@ class Repo:
             )
         return [to_product(r) for r in self.db.get_products()]
 
-    def get_prod_cat_pairs(self) -> list[ProdCatPair]:
+    def get_prod_cat_pairs(self) -> list[ProductCategoryPair]:
         def to_pair(r):
-            return ProdCatPair(
+            return ProductCategoryPair(
                 product=r['product'],
                 category=r['category'],
             )

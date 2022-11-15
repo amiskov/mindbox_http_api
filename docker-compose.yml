@@ -9,25 +9,21 @@ services:
       - 8000:8000
     expose:
       - 8000/tcp
-    env_file:
-      - ./.env
     depends_on:
       db:
         condition: service_healthy
+    env_file:
+      - .env
     healthcheck:
       test: "exit 0"
 
   db:
     image: postgres:13.0-alpine
     volumes:
-      - postgres_data:/var/lib/postgresql/data/
-      - ./src/db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
-    env_file:
-      - ./.env
+      - ./db/:/docker-entrypoint-initdb.d/
     ports:
       - 4321:5432
+    env_file:
+      - .env
     healthcheck:
       test: "exit 0"
-
-volumes:
-  postgres_data:

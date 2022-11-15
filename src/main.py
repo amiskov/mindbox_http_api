@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 from api.v1 import api
 
-from core import config
+from core.config import config
 from core.logger import LOGGING
 from repo import get_db
 
