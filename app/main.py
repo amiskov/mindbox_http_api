@@ -3,7 +3,7 @@ import logging
 import uvicorn
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
-from api.v1 import api
+from api.v1.routes import router as v1_router
 
 from core.config import config
 from core.logger import LOGGING
@@ -29,10 +29,7 @@ async def shutdown_event():
         db.disconnect()
 
 
-app.include_router(
-    api.router,
-    prefix='/api/v1',
-)
+app.include_router(v1_router, prefix='/api/v1')
 
 
 if __name__ == '__main__':

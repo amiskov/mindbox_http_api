@@ -5,12 +5,12 @@ from .postgres import Database
 
 
 class ProductWithCategories(BaseModel):
-    name: str
+    product: str
     categories: list[str]
 
 
 class CategoryWithProducts(BaseModel):
-    name: str
+    category: str
     products: list[str]
 
 
@@ -36,7 +36,7 @@ class Repo:
     def get_categories(self) -> list[CategoryWithProducts]:
         def to_category(r):
             return CategoryWithProducts(
-                name=r['category'],
+                category=r['category'],
                 products=r['products'],
             )
         return [to_category(r) for r in self.db.get_categories()]
@@ -44,7 +44,7 @@ class Repo:
     def get_products(self) -> list[ProductWithCategories]:
         def to_product(r):
             return ProductWithCategories(
-                name=r['product'],
+                product=r['product'],
                 categories=r['categories'],
             )
         return [to_product(r) for r in self.db.get_products()]

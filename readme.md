@@ -33,8 +33,10 @@ make up # запустит `docker compose up --build -d`
 Open API будет доступен по адресу http://localhost:8000/api/openapi
 
 ## Тесты
-В текущей директории запустить:
+Приложение тестируется через PyTest, файл тестов лежит рядом с `main.py`.
+
+Запуск:
 
 ```sh
-pytest .
+make test
 ```
