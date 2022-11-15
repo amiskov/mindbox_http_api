@@ -33,9 +33,13 @@ make up # запустит `docker compose up --build -d`
 Open API будет доступен по адресу http://localhost:8000/api/openapi
 
 ## Тесты
-Требуется PyTest из Python-окружения в директории проекта (файл `requirements.txt`). Тесты лежат в `app/test_main.py`.
+Тесты можно запустить в работающем докер-контейнере:
 
-Запуск:
+```sh
+docker exec $YOUR_CONTAINER_ID pytest /code/app/test_main.py
+```
+
+Для запуска из директории проекта понадобится установленный PyTest. Запустить можно так:
 
 ```sh
 make test # запустит `pytest . -sv`
